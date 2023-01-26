@@ -57,7 +57,7 @@ public class OrderConsoleController {
         case 4 -> {
           var clientId = Integer.parseInt(getScanner(
               "Enter ID of Client, you'd like to get full info => "));
-          clientService.fullClientInfo(clientId);;
+          clientService.fullClientInfo(clientId);
         }
         case 5 -> {
           var clientId = Integer.parseInt(getScanner(

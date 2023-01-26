@@ -33,6 +33,6 @@ public class OrderItem {
   private Order order;
   @ManyToOne
   @JoinColumn(name = "fk_product_id", nullable = false)
-  private Product product; //(ManyToOne) //скоріш за все OneToOne//
+  private Product product; //(ManyToOne)//
   private int count;
 }
