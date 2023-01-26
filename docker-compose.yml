@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  postgres_service:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: shopDB
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
