@@ -7,7 +7,8 @@ import com.example.hibernatetwo.model.OrderItem;
 import com.example.hibernatetwo.repository.OrderItemRepository;
 import com.example.hibernatetwo.repository.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,6 @@ public class OrderService {
   private final OrderItemRepository orderItemRepository;
   private final ObjectMapper objectMapper;
   private final ProductService productService;
-  private final ClientService clientService;
 
 
   public OrderDto createOrder(OrderDto orderDto) {
@@ -52,10 +52,23 @@ public class OrderService {
     return orderItemDto;
   }
 
-  public OrderDto findById(int id) {
-    var order = orderRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("No order with such ID!"));
-    return objectMapper.convertValue(order, OrderDto.class);
+  public List<OrderDto> getOrderDtosByClientId(int id) {
+    List<OrderDto> resultList = new ArrayList<>();
+    var orders = orderRepository.findOrdersByClientId(id);
+    orders.forEach(order -> resultList.add(objectMapper.convertValue(order, OrderDto.class)));
+    return resultList;
+  }
+
+  public List<OrderItemDto> getOrderItemsByOrderId(int id) {
+    List<OrderItemDto> resultList = new ArrayList<>();
+    var orderItems = orderItemRepository.findByOrderId(id);
+    orderItems.forEach(
+        orderItem -> resultList.add(objectMapper.convertValue(orderItem, OrderItemDto.class)));
+    return resultList;
+  }
+
+  public List<Integer> getOrderIdsByClientId(int id) {
+    return orderRepository.findOrderIdByClientId(id);
   }
 
   public OrderDto addOrderItem(OrderDto orderDto, int productId, int quantity) {

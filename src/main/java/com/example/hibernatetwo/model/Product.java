@@ -34,7 +34,7 @@ public class Product {
   private String name;
   private String description;
   private double price;
-  @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JsonIgnore
   private List<OrderItem> orderItem;
 }

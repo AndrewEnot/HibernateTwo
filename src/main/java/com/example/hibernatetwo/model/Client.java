@@ -38,7 +38,7 @@ public class Client {
   @OneToOne(mappedBy = "client")
   @JsonIgnore
   private Address address; //(OneToOne)
-  @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JsonIgnore
   private List<Order> ordersHistory; // (OneToMany)
 }

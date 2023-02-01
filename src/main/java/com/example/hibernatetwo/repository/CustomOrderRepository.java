@@ -1,15 +1,18 @@
 package com.example.hibernatetwo.repository;
 
 import com.example.hibernatetwo.model.Order;
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 /*
  * @author Oksiuta Andrii
- * 24.01.2023
- * 15:14
+ * 01.02.2023
+ * 12:49
  */
 @Repository
-public interface OrderRepository extends CrudRepository<Order, Integer>, CustomOrderRepository {
+public interface CustomOrderRepository {
 
+  List<Order> findOrdersByClientId(int id);
+
+  List<Integer> findOrderIdByClientId(int id);
 }

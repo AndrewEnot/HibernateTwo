@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  * 15:15
  */
 @Repository
-public interface OrderItemRepository extends CrudRepository<OrderItem, Integer> {
-
+public interface OrderItemRepository extends CrudRepository<OrderItem, Integer>,
+    CustomOrderItemRepository {
 }

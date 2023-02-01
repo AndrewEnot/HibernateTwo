@@ -36,7 +36,7 @@ public class Order {
   @ManyToOne
   @JoinColumn(name = "fk_client_id", nullable = false)
   private Client client;
-  @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JsonIgnore
   private List<OrderItem> orderItems; //(OneToMany)
   private double sumOfOrder;
